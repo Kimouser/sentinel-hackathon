@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "sentinel.enriched_event",
+  "description": "Published by M3 to sentinel/enriched/{cam_id}. Frozen once test_roundtrip.py passes -- every downstream module (M4, M7, M8) is written against this shape, not against M1/M3's implementation.",
+  "type": "object",
+  "required": ["cam_id", "timestamp", "vendor_profile", "detections", "gps"],
+  "properties": {
+    "cam_id": {"type": "string", "example": "cam_04"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "vendor_profile": {"type": "string", "example": "hikvision_v1"},
+    "detections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "bbox", "confidence"],
+        "properties": {
+          "type": {"type": "string", "enum": ["vehicle", "person"]},
+          "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+          "plate": {"type": ["string", "null"]},
+          "plate_confidence": {"type": ["number", "null"]},
+          "track_id": {"type": ["string", "null"]},
+          "confidence": {"type": "number"}
+        }
+      }
+    },
+    "gps": {
+      "type": "object",
+      "required": ["lat", "lon"],
+      "properties": {
+        "lat": {"type": "number"},
+        "lon": {"type": "number"}
+      }
+    }
+  }
+}

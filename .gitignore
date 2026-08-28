@@ -1,0 +1,17 @@
+# Environments
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# AI Models
+models/*.pt
+models/*.onnx
+
+# Database volumes
+sentinel_pgdata/
+
+# Environment Variables
+.env
