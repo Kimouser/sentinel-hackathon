@@ -1,0 +1,13 @@
+# Sentinel Autonomous Delivery Agent
+
+## Mission
+Execute and validate the Sentinel surveillance hackathon deliverables sequentially. Pause only for visual confirmation, live camera testing, or fatal hardware errors.
+
+## Operating Rules
+1. **Zero Speculation**: Never invent external endpoints or credentials. Follow schemas strictly.
+2. **Binary Done-When Bars**: A task is NOT complete until its standalone test script outputs `PASS` or exits with code 0.
+3. **Strict Git Discipline**:
+   - Run verification scripts before committing.
+   - Stage only code files (never `models/*.pt`, `venv/`, or `assets/*.mp4`).
+   - Commit message format: `feat(mX): complete day Y success bar`.
+4. **Self-Healing Loop**: If a test fails, inspect stderr, apply a targeted fix, and rerun. If it fails 3 times, halt and ask for human review.
